@@ -4,3 +4,5 @@ The Script connects to the local MQTT broker of the printer and subscribes to th
 
 Change the **IP-Address** and the **Accesscode**
 You can add more Keys and their suffixes in the **key_suffixes** map
+
+[stream.png]
