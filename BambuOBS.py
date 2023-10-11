@@ -4,7 +4,7 @@ import ssl
 import os
 
 IP_address = "192.168.178.239"
-password = "59fe1229"
+accesscode = "59fe1229"
 topic = f"device/#"
 
 key_suffixes = {
@@ -27,6 +27,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(topic)
 
 def on_message(client, userdata, msg):
+
     try:
         payload = json.loads(msg.payload)
         if "print" in payload:
@@ -34,9 +35,7 @@ def on_message(client, userdata, msg):
             print(print_content)
             for key, suffix in key_suffixes.items():
                 if key in print_content:
-                    # Wert mit Suffix kombinieren
                     value_with_suffix = str(print_content[key]) + suffix
-                    # Schreiben Sie in Dateien im "overlays"-Ordner
                     with open(
                         os.path.join("overlays", f"{key}.txt"), "w", encoding="utf-8"
                     ) as f:
@@ -48,7 +47,7 @@ def on_message(client, userdata, msg):
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-client.username_pw_set("bblp", password=password)
+client.username_pw_set("bblp", password=accesscode)
 client.tls_set(cert_reqs=ssl.CERT_NONE)
 client.tls_insecure_set(True)
 client.connect(IP_address, 8883, 60)
