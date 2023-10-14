@@ -18,6 +18,7 @@ key_suffixes = {
     "mc_percent": "%",
     "mc_remaining_time": "min",
     "subtask_name": "",
+    "layer_num":""
 }
 
 def on_connect(client, userdata, flags, rc):
